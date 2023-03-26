@@ -17,7 +17,11 @@
     "ethers": "^5.4.7",
     "hardhat": "^2.13.0",
     "hardhat-gas-reporter": "^1.0.8",
+    "mocha": "^10.2.0",
     "solidity-coverage": "^0.8.0",
     "typechain": "^8.1.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2"
   }
 }
