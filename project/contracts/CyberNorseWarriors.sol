@@ -9,9 +9,9 @@ import "hardhat/console.sol";
 
 // shold mint be free to owner only or public and payable
 // should I have a function that allows the owner to:
-// - increase the MAX_SUPPLY value
-// - check the MAX_SUPPLY value
-// - modifty the baseTokenURI so that the new token batch can use a new url for metadata
+// - increase the MAX_SUPPLY value ✅
+// - check the MAX_SUPPLY value ✅
+// - allow the baseTokenURI to be changed so that the new token batch can use a new url for metadata ✅
 //   Example: initial supply 30 NTFs baseURI ipfs://bucket1
 //      owner bumps supply to 50 NFTs baseURI ipfs://bucket-new then:
 //          - we need to keep user ipfs://bucket1 until the initial suply is over (tokenId <= 30)
@@ -24,6 +24,8 @@ contract CyberNorseWarriors is ERC721, Ownable {
         uint256 maxSupply;
         string metadataURI;
     }
+
+    event NFTBatchAdded(uint256 maxSupply, string metadataURI);
 
     uint256 private _lastTokenId;
     NFTBatch private _currentBatch;
@@ -42,6 +44,10 @@ contract CyberNorseWarriors is ERC721, Ownable {
         return _currentBatch.maxSupply;
     }
 
+    function bumpSupplyAvaiable() public view onlyOwner returns (bool) {
+        return _nextBatch.maxSupply == 0;
+    }
+
     function bumpSupply(
         uint256 newMaxSupply,
         string memory newMetadataURI
@@ -58,6 +64,7 @@ contract CyberNorseWarriors is ERC721, Ownable {
 
         _nextBatch.maxSupply = newMaxSupply;
         _nextBatch.metadataURI = newMetadataURI;
+        emit NFTBatchAdded(newMaxSupply, newMetadataURI);
     }
 
     // function safeMint(address to, string memory uri) public onlyOwner {
