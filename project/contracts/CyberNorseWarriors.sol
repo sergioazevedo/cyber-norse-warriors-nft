@@ -6,7 +6,8 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-import "hardhat/console.sol";
+// Uncomment this line to use console.log
+// import "hardhat/console.sol";
 
 // Desired functionalities:
 // - increase the MAX_SUPPLY value (only Owner) ✅
