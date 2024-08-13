@@ -1,11 +1,14 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import 'dotenv/config'
 
 const CNWModule = buildModule("CNWModule", (m) => {
+  const owner : string = process.env.OWNER_ADDRESS as string;
+  const metadataURI: string = process.env.METADATA_URI as string;
   const CyberNorseWarriors =  m.contract(
     "CyberNorseWarriors", [
-      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      owner,
       10,
-      "ipfs://bafybeidruvtfdzkrfrjo72scz74txmxjgdne5zwzblzztpu5vfuqp5yer4"
+      metadataURI,
     ]
   );
 
