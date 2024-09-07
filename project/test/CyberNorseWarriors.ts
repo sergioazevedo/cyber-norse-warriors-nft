@@ -170,7 +170,7 @@ describe("CyberNorseWarriors", async () => {
         const { contract, secondAccount } = await loadFixture<IFixtures>(deployContract);
         await contract.safeMint(secondAccount, { value: ethers.parseEther("0.003") });
 
-        expect( await contract.tokenURI(1) ).to.be.equal( "ipfs://abc" );
+        expect( await contract.tokenURI(1) ).to.be.equal( "ipfs://abc/1.json" );
       });
 
       it("ensures that minted tokens will use the new batch metadatadaURI when a batch is rotated", async () => {
@@ -184,8 +184,8 @@ describe("CyberNorseWarriors", async () => {
         // must trigger the new batch
         await contract.safeMint(secondAccount, { value: ethers.parseEther("0.003") });
 
-        expect( await contract.tokenURI(5) ).to.be.equal("ipfs://abc");
-        expect( await contract.tokenURI(6) ).to.be.equal("ipfs://xyz.zk");
+        expect( await contract.tokenURI(5) ).to.be.equal("ipfs://abc/5.json");
+        expect( await contract.tokenURI(6) ).to.be.equal("ipfs://xyz.zk/6.json");
       });
     });
   });

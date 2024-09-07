@@ -5,7 +5,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
+import "@openzeppelin/contracts/utils/Strings.sol";
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
 
@@ -86,7 +86,16 @@ contract CyberNorseWarriors is ERC721, ERC721URIStorage, Ownable {
             rotateCurrentBatch();
         }
         super._safeMint(to, tokenId);
-        super._setTokenURI(tokenId, _currentBatch.metadataURI);
+
+        super._setTokenURI(
+            tokenId,
+            string.concat(
+                _currentBatch.metadataURI,
+                "/",
+                Strings.toString(tokenId),
+                ".json"
+            )
+        );
     }
 
     function rotateCurrentBatch() internal {

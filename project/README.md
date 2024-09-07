@@ -12,6 +12,24 @@ npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.ts
 ```
 
+#### Running tests
+
+```
+npx hardhat test --typecheck
+```
+
+#### Running tests on a single file
+
+```
+npx hardhat test ./test/CyberNorseWarriors.ts --typecheck
+```
+
+#### Deploying locally using hardhat node
+
+```
+npx hardhat ignition deploy ./ignition/modules/CyberNorseWarriors.ts --network localhost
+```
+
 # Accounts
 
 WARNING: These accounts, and their private keys, are publicly known.
